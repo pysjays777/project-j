@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn Japanese with Jayden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ---- Fonts & Icons ---- -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yT5C7nPJvCgq8+6ehJ7sE2zvvFZz2+2FnQzbEsHdZg4m7w6Z0KmoEkzKRXU/d/H7lOwm8fd+cJjv2lQQ9Q3vXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- ---- Styles ---- -->
+  <style>
+    :root{
+      --jp-red:#e60012;            /* Flag red */
+      --jp-pink:#f9e5e9;           /* Sakura pink */
+      --jp-charcoal:#222;          /* Text */
+      --jp-white:#fff;             
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Montserrat', sans-serif;
+      color:var(--jp-charcoal);
+      background:var(--jp-white);
+      line-height:1.6;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    header{
+      background:linear-gradient(135deg,var(--jp-pink) 0%,var(--jp-white) 50%);
+      border-bottom:4px solid var(--jp-red);
+      text-align:center;
+      padding:4rem 1rem 3rem;
+      position:relative;
+    }
+    header h1{
+      font-family:'Noto Sans JP', sans-serif;
+      font-size:2.8rem;
+      margin-bottom:.5rem;
+    }
+    header p{
+      font-weight:300;
+      font-size:1.1rem;
+      max-width:650px;
+      margin:auto;
+    }
+    /* Decorative wave */
+    header::after{
+      content:'';
+      position:absolute;
+      left:0; right:0; bottom:-1px; height:48px;
+      background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'><path fill='%23e60012' fill-opacity='1' d='M0,224L60,192C120,160,240,96,360,96C480,96,600,160,720,181.3C840,203,960,181,1080,149.3C1200,117,1320,75,1380,53.3L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'></path></svg>") repeat-x bottom / cover;
+    }
+    section{
+      width:90%;
+      max-width:850px;
+      margin:3rem auto;
+    }
+    .block{
+      margin-bottom:3rem;
+    }
+    .block h2{
+      font-family:'Noto Sans JP',sans-serif;
+      color:var(--jp-red);
+      font-size:1.8rem;
+      margin-bottom:1rem;
+    }
+    .block p{margin-bottom:1rem;}
+    .syllabus ul{
+      margin-left:1.5rem;
+      list-style:square;
+    }
+    .cta{
+      background:var(--jp-red);
+      color:var(--jp-white);
+      padding:2rem;
+      border-radius:8px;
+      text-align:center;
+    }
+    .cta h2{color:var(--jp-white);}
+    .btn{
+      display:inline-block;
+      margin-top:1rem;
+      background:var(--jp-white);
+      color:var(--jp-red);
+      padding:.8rem 1.5rem;
+      border-radius:25px;
+      text-decoration:none;
+      font-weight:600;
+      transition:all .2s ease-in-out;
+    }
+    .btn:hover{background:var(--jp-pink);color:var(--jp-charcoal);}
+    footer{
+      margin-top:auto;
+      background:var(--jp-charcoal);
+      color:var(--jp-white);
+      text-align:center;
+      padding:1.2rem .8rem;
+      font-size:.9rem;
+    }
+    /* Responsive tweaks */
+    @media(max-width:600px){
+      header h1{font-size:2.2rem;}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Jayden’s Japanese Class</h1>
+    <p>Master practical Japanese in an engaging, community-driven environment. Whether you dream of traveling, working, or immersing in anime &amp; culture—this is where your journey begins.</p>
+  </header>
+  
+  <section class="block about">
+    <h2>Why Learn with Me?</h2>
+    <p>Hello! I’m <strong>Jayden</strong>—a multilingual operations specialist, JLPT N2 candidate, and passionate tutor dedicated to making Japanese accessible for beginners. My teaching merges cultural insights, tech-enabled resources, and bite-sized practice drills to fast-track your progress.</p>
+  </section>
+  
+  <section class="block syllabus">
+    <h2>Course Highlights</h2>
+    <ul>
+      <li>Structured 12-week curriculum (beginner → conversational)</li>
+      <li>Interactive live sessions &amp; recorded replays</li>
+      <li>Kanji hacks for Chinese speakers + mnemonic worksheets</li>
+      <li>Anime &amp; J-pop listening labs to sharpen comprehension</li>
+      <li>Weekly office hours &amp; peer study community</li>
+    </ul>
+  </section>
+  
+  <section class="block logistics">
+    <h2>Logistics</h2>
+    <p><strong>Format:</strong> Online (Zoom) – 2&nbsp;× 90-minute classes per week</p>
+    <p><strong>Next Cohort Starts:</strong> <time datetime="2025-07-01">July&nbsp;1&nbsp;2025</time></p>
+    <p><strong>Fee:</strong> MYR 1,200 (early-bird 10 % off before <time datetime="2025-06-15">15 June</time>)</p>
+  </section>
+  
+  <section class="cta">
+    <h2>Reserve Your Spot</h2>
+    <p>Seats are capped at <strong>15</strong> to ensure hands-on attention.</p>
+    <a href="mailto:YOUR_EMAIL@example.com?subject=Japanese%20Class%20Enrollment" class="btn"><i class="fa-solid fa-envelope"></i>  Enquire via Email</a>
+  </section>
+  
+  <section class="block contact">
+    <h2>Connect &amp; Follow</h2>
+    <p>E-mail: <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/YOUR_HANDLE" target="_blank">@YOUR_HANDLE</a></p>
+  </section>
+
+  <footer>
+    © <script>document.write(new Date().getFullYear())</script> Jayden | Crafted with multilingual passion.
+  </footer>
+</body>
+</html>
