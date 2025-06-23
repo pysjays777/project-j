@@ -1,0 +1,145 @@
+SQL
+
+Inner Intersects → 只要两边都命中
+
+Left keeps Left → 左表全留
+
+Right keeps Right → 右表全留
+
+Full keeps Full → 两表并集全留
+--------------------------------------------------------------------------------------
+
+SELECT 
+-(AGGFUNCTION need to write in select row: SELECT student_grades, AVG(gpa) AS avg_gpa
+
+FROM
+-table_name
+
+WHERE
+-condition 
+
+GROUP BY
+-groupby column after used AGGFunction in select for better view, it must be the same column name when you in SELECT and GROUP BY 
+
+HAVING
+- the specific column under condition(e.g: avg_gpa < 3.3)
+ORDER BY
+-sort your data in the way you want to find top 10/bottom 10
+-ORDER BY column_name; [default in Ascending, if want descending just put DESC)
+-ORDER BY column_name DESC;
+
+Select * From Table where condition 
+
+select * from table A  as tableA Join table B as tableB on tableA.column = tableB.column
+
+For example:
+SELECT * <* means all, and you can specify the specific column by using the column name too
+FROM TABLE_A_NAME LEFT JOIN TABLE_B_NAME
+    ON COMMON_COLUMN(E.G: ID) = COMMON_COLUMN(E.G: ID)
+
+select * from table A as tableA left join table B as tableB on tableA.column = tableB.column
+
+select * from table A as tableA full outer join table B as tableB on tableA.column = tableB.column
+
+SUBQuery is a function that allow user to find a certain area of data such as date and can use it for index
+
+Syntax : 
+SELECT ‘Value’ AS dt
+UNION ALL
+SELECT ‘Value’
+UNION ALL
+ETC
+ETC
+
+-------------------------------------------------------------------------------
+Cursor CTE: date edition
+WITH RECURSIVE table_name AS ( SELECT CAST(‘2025-01-01’ AS DATE) as ‘Variables’
+                                                            UNION ALL
+                                                            SELECT ‘Variables’ + INTERVAL 1 DAY
+                                                            FROM table_name
+                                                            WHERE ‘Variables’ < CAST(‘2025-01-07’ AS DATE)
+)
+
+SELECT * FROM table_name
+
+Explanation:
+WITH RECURSIVE basically allows the user to lock a certain area of data by using a different index, at the code above it uses date as index. Hence the CAST here is to let MySQL use a date format instead of normal string value.
+
+UNION ALL - is like a connector to the end
+
+So since it was  assigned the DATE VALUE as the VARIABLES here, hence use INTERVAL 1 DAY to specify the interval you need. 
+
+Then back to FROM table_name
+
+But in INTERVAL function we need break to let the Query stop at some point, so use WHERE ‘Variables’ =, <, >, =>, =< to break the query. 
+
+----------------------------------------------------------------------------------------
+
+Another way to write a JOIN query
+
+SELECT table_nameA.column want to join, table_nameB.column want to join
+FROM table_nameA LEFT JOIN table_nameB ON table_nameA.index, table_nameB.index
+
+----------------------------------------------------------------------
+
+FILL NA FUNCTION
+COALESCE
+
+SELECT table_nameA.column1, table_nameB.column2,
+               COALESCE(which column that you want to fill NA, Fill with what value) AS New COLUMN,
+               COALESCE(which column that you want to fill NA.table_name, ROUND((SELECT AVG(which column want to FILLNA.table_name) FROM table_name), 1)) AS New Column name
+FROM table_nameA LEFT JOIN table_nameB ON table_nameA.index.column = table_nameB.index.column; 
+
+Explanation:
+So COALESCE is a way to fill NA when your data contained NULL value, and it could defined what value to fill, and also in Data science, they prefer to look for the average figure of the whole column to fill in the NULL instead of 0. 
+
+---------------------------------------------------------------------
+Windows function
+Fill index number and using LAG/LEAD 
+
+Syntax:
+ROW_NUMBER()
+LAG()
+LEAD()
+
+SELECT target_column1, target_column2
+               ROW NUMBER () OVER () AS new_column_name
+               LAG(target_column) OVER() AS new_column_name,
+               LEAD(target_column) OVER () AS new_column_name
+FROM table
+
+Windows functions can perform some basic indexing function, such as ROW NUMBER() OVER () can insert index start at 1. 
+LAG(target_column)OVER() is purposely delaying the data of each row down to 1 row from their original row.
+LEAD(target_column)OVER() just do the opposite of LAG()
+
+Why is this ? It could help the data analysis with better accurate results by dividing the upper row and bottom row between the NULL value’s row by using COALESCE
+
+Syntax: 
+SELECT table_nameA.column,
+              COALESCE(table_nameA.target_column, ROUND((LAG(target_column)OVER() + LEAD(target_column) OVER()) / 2 )) AS new column
+FROM table_name LEFT JOIN ON table_nameA.index_column = table_nameB.index_column;
+
+---------------------------------------------------------------------------------
+Joining 3 tables Example: 
+WITH … AS() < Called it as CTE
+WITH AB AS(
+SELECT 
+city.CountryCode, city.Name, city.District, city.Population, country.Continent, country.SurfaceArea, country.LifeExpectancy
+FROM city LEFT JOIN country ON city.CountryCode = country.code
+)
+
+SELECT 
+AB.CountryCode, AB.Name, AB.District, AB.Population, AB.Continent, AB.SurfaceArea, AB.LifeExpectancy, countrylanguage.Language, countrylanguage.Percentage
+FROM AB LEFT JOIN countrylanguage ON AB.Countrycode = countrylanguage.CountryCode
+ORDER BY AB.LifeExpectancy DESC;
+
+Explanation: 
+Here I tried to join three tables together, and bear in mind that we cannot have same column name in final query, so we have to select the columns we need from three tables and join it to 1 tables. 
+Start with 
+WITH ‘Variables’ AS ( Select all the columns with table.column format to avoid error 1052)
+From Table A LEFT JOIN TABLE B ON table.columnindex = table.columnIndex)
+
+Next table continue in 
+SELECT
+Variables.Column selected…and 3rd table target columns
+FROM ‘Variables’ LEFT JOIN 3RD TABLE ON combined_table.variables_column_index = 3rd table.index_column 
