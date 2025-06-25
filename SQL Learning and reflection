@@ -143,3 +143,103 @@ Next table continue in
 SELECT
 Variables.Column selected…and 3rd table target columns
 FROM ‘Variables’ LEFT JOIN 3RD TABLE ON combined_table.variables_column_index = 3rd table.index_column 
+
+INSERT INTO
+
+Sample code
+INSERT INTO TABLENAME (
+COLUMNNAME1,
+COLUMNNAME2,
+COLUMNNAME3)
+VALUES(
+‘VALUE1’
+‘VALUE2’
+‘VALUE3’);
+
+
+
+
+
+IS NULL
+
+To find the value that is null 
+
+Sample code:
+SELECT *
+FROM TABLENAME	
+WHERE COLUMNNAME IS NULL
+
+To find the value that is not null
+Sample code:
+SELECT *
+FROM tablename
+WHERE COLUMNNAME IS NOT NULL
+
+
+
+UPDATE 
+To modify the existing information
+Sample code:
+
+UPDATE tablename
+SET columnname1 = ‘value1’, columnname2 = ‘value2’
+WHERE condition 
+
+
+
+DELETE
+To delete the existing data from a table
+
+Sample code:
+DELETE FROM tablename
+WHERE columnname = value1
+# Without WHERE it will delete the whole table data instead.
+
+
+MIN & MAX
+To find the minimum value or maximum value in the column
+
+Sample code: 
+SELECT MIN(COLUMN)/MAX(COLUMN)
+FROM TABLENAME
+
+Count
+
+Sample Code:
+
+SELECT COUNT(*)
+FROM tablename
+WHERE columnname condition
+
+DISTINCT 
+Select only unique value
+
+SELECT DISTINCT(*)
+FROM tablename
+
+
+
+LIKE
+Searches for a specified pattern in a column
+For example: 
+To select someone name start from specific letter
+SELECT *
+FROM tablename
+WHERE columnname like ‘H%’ / ‘%H’ / ‘%A%’
+
+
+The percentage here is referring to where it start or end with
+A% = start with 
+%A = End with
+%A% = Contains with 
+
+If want to find word that start with certain characters
+For example start with A end with B 
+
+A%B
+
+To find that is not start with or end with
+SELECT *
+FROM tablename
+WHERE columnname NOT LIKE  ‘H%’ / ‘%H’ / ‘%A%’
+
